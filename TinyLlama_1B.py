@@ -43,13 +43,28 @@ model.eval()  # Speed tweak: disable dropout and enable inference-optimized code
 print(f"Model loaded in {time.time() - start_time:.2f} seconds.")
 
 # 3. Prepare the Input (Task: Words to Sentence)
-words = ['sky', 'blue', 'sun'] 
+words = ['fruit', 'happy'] 
 # words = get_random_words("temp2.txt", random.randint(3, 5))
-prompt = f"<|system|> You are a helpful assistant.</s>\n\
-    <|user|>\nCreate a very short sentence using only these words: {words}.\
-No extra adjectives. No extra nouns. \
-Use simple present tense. Output one sentence only.</s>\n\
-        <|assistant|>\n"
+# prompt = f"<|system|> You are a helpful assistant.</s>\n\
+#     <|user|>\nCreate a very short sentence using only these words: {words}.\
+# No extra adjectives. No extra nouns. \
+# Use simple present tense. Output one sentence only.</s>\n\
+#         <|assistant|>\n"
+prompt = f"""<|system|> You are a helpful assistant. You correct spelling errors first, then make a simple sentence.</s>
+<|user|>
+Words: ['eht', 'appie']
+<|assistant|>
+Corrected words: ['eat', 'apple']
+Sentence: I eat an apple.</s>
+<|user|>
+Words: ['whlk', 'sohool']
+<|assistant|>
+Corrected words: ['walk', 'school']
+Sentence: I walk to school.</s>
+<|user|>
+Words: {words}
+<|assistant|>
+Corrected words:"""
 print(f"\nPrompt:\n{prompt}")
 # 4. Tokenization
 inputs = tokenizer(prompt, return_tensors="pt").to(device)
@@ -63,12 +78,12 @@ print("Generating...")
 with torch.inference_mode():
     output_tokens = model.generate(
         **inputs,
-        max_new_tokens=50,
+        max_new_tokens=30,
         do_sample=False,      # Enable creative sampling
         # temperature=0.7,     # Randomness control
         # top_p=0.9            # Diversity control
         use_cache=True        # Speed tweak: KV cache speeds up autoregressive decoding.
-                                # KV Cache在生成低N个token的时候不需要重新计算前N-1个token的Attention Key，
+                                # KV Cache在生成第N个token的时候不需要重新计算前N-1个token的Attention Key，
                                 # 而是直接从缓存中读取，大幅提升生成速度和减少显存使用
     )
 

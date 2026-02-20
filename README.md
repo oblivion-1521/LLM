@@ -13,7 +13,7 @@
 Accelerate Model weight loading:
 - 使用.safetensors格式支持**内存映射（mmap）**，可以直接从磁盘映射到内存，速度最快。
 - 丢掉device_map
-- 架构改进，不重复加载，携程交互式脚本或API服务。
+- 架构改进，不重复加载，写成交互式脚本或API服务。
 
 
 

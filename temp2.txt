@@ -33,7 +33,7 @@ sleep
 spoon
 take
 thank
-these-q
+these
 tired
 today
 toilet
@@ -47,4 +47,4 @@ what
 when
 where
 worry
-you-q
+you
