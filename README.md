@@ -1,3 +1,8 @@
+config: 
+- python: 3.10.19
+- torch: 2.10.0+cu128
+- cuda (torch): 12.8
+
 目前已经使用的加速：
 1. FP16半精浮点
 2. TensorFloat-32的Ampere架构牺牲精度加速

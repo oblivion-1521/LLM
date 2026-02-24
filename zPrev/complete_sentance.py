@@ -3,7 +3,7 @@ import random
 
 # --- Configuration ---
 # API_KEY = ""
-FILE_PATH = "temp2.txt"
+FILE_PATH = "input.txt"
 
 # Initialize Client
 client = genai.Client(api_key=API_KEY)

@@ -1,1 +1,3 @@
 Models/
+.vscode/
+*/__pycache__/
