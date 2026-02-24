@@ -13,7 +13,7 @@ def get_random_words(file_path, count):
         return []
 
 # 1. Point to your local directory
-model_path = "./Models/Llama_1B"
+model_path = "./Models/LlaMa_8B"
 
 print("Loading model and tokenizer...")
 start_time = time.time()
@@ -43,7 +43,7 @@ model.eval()  # Speed tweak: disable dropout and enable inference-optimized code
 print(f"Model loaded in {time.time() - start_time:.2f} seconds.")
 
 # 3. Prepare the Input (Task: Words to Sentence)
-words = ['fruit', 'happy'] 
+words = ['love', 'fuck'] 
 # words = get_random_words("temp2.txt", random.randint(3, 5))
 # prompt = f"<|system|> You are a helpful assistant.</s>\n\
 #     <|user|>\nCreate a very short sentence using only these words: {words}.\
